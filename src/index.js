@@ -4,5 +4,8 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+/*
+Typically only one root component is rendered. All other components are nested in the app component.
+*/
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
