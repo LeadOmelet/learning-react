@@ -11,6 +11,8 @@ const person = (props) => {
 };
 
 /*
+Methods can be passed as a property. This is a COMMON pattern in React.
+
 Equivalent to:
 const person = function() {
   //...

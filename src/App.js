@@ -17,12 +17,12 @@ class App extends Component {
       { name: "Jack", age: 39 }]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     console.log('Was clicked!');
     // DO NOT DO THIS: this.state.persons[0].name = "Maxxy Boy";
     this.setState({persons:
         [
-          { name: "M", age: 40 },
+          { name: newName, age: 40 },
           { name: "B", age: 24 },
           { name: "J", age: 39 }
         ]
@@ -34,17 +34,23 @@ class App extends Component {
       <div className="App">
         <h1>Hey!</h1>
         <p>This is really working.</p>
-        <button onClick={this.switchNameHandler}>Switch Names</button>
+        <button onClick={this.switchNameHandler.bind(this, 'McDonalds')}>Switch Names</button>
         <Person
           name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person
-          name={this.state.persons[1].name} age={this.state.persons[1].age} clickHandler={this.switchNameHandler}>Hobbies include: Racing.</Person>
+          name={this.state.persons[1].name} age={this.state.persons[1].age} clickHandler={this.switchNameHandler.bind(this, 'McMac')}>Hobbies include: Racing.</Person>
         <Person
           name={this.state.persons[2].name} age={this.state.persons[2].age} />
       </div>
     ); // ^^^ Looks like html, but is actually JSX.
   }
 }
+
+/*
+() => this.switchNameHandler()
+...is the equivalent of... (though can result in a performance hit)
+this.switchNameHandler.bind(this, 'McDonalds')
+*/
 
 /*
 Notes on JSX:
