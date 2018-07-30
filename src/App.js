@@ -11,9 +11,9 @@ class App extends Component {
       <div className="App">
         <h1>Hey!</h1>
         <p>This is really working.</p>
-        <Person />
-        <Person />
-        <Person />
+        <Person name="Max" age="39" />
+        <Person name="Josh" age="12">Hobbies include: Racing.</Person>
+        <Person name="Ben" age="23" />
       </div>
     ); // ^^^ Looks like html, but is actually JSX.
   }
