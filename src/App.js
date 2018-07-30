@@ -56,12 +56,10 @@ class App extends Component {
       cursor: 'pointer'
     };
 
-    return (
-      <div className="App">
-        <h1>Hey!</h1>
-        <p>This is really working.</p>
-        <button style={butStyle} onClick={this.togglePersonsHandler}>Switch Names</button>
-        { this.state.showPersons ?
+    /* Another way to toggle persons. */
+    let persons = null;
+    if(this.state.showPersons) {
+      persons = (
         <div>
           <Person
             name={this.state.persons[0].name} age={this.state.persons[0].age} inputChangeMethod={this.nameChangeHandler.bind(this)} />
@@ -69,8 +67,16 @@ class App extends Component {
             name={this.state.persons[1].name} age={this.state.persons[1].age} clickHandler={this.switchNameHandler.bind(this, 'McMac')}>Hobbies include: Racing.</Person>
           <Person
             name={this.state.persons[2].name} age={this.state.persons[2].age} />
-        </div> : null
-      }
+        </div>
+      );
+    }
+
+    return (
+      <div className="App">
+        <h1>Hey!</h1>
+        <p>This is really working.</p>
+        <button style={butStyle} onClick={this.togglePersonsHandler}>Switch Names</button>
+        {persons}
       </div>
     ); // ^^^ Looks like html, but is actually JSX. If statements don't work but ternaries ( condition ? ifTrueDoThis : ifFalseDoThis ) do.
   }
