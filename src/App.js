@@ -6,14 +6,26 @@ Components should start with a upper case character to prevent JSX from mis inte
 */
 
 class App extends Component {
+  /*
+  States are not availble in function components (only in classes that extend the Component class).
+  States are global. Be careful!
+  */
+  state = {
+    persons: [
+      { name: "Max", age: 39 },
+      { name: "Bonnie", age: 23 },
+      { name: "Jack", age: 39 }]
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hey!</h1>
         <p>This is really working.</p>
-        <Person name="Max" age="39" />
-        <Person name="Josh" age="12">Hobbies include: Racing.</Person>
-        <Person name="Ben" age="23" />
+        <button>Switch Names</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>Hobbies include: Racing.</Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
       </div>
     ); // ^^^ Looks like html, but is actually JSX.
   }
