@@ -5,7 +5,7 @@ const person = (props) => {
   return (
     <div>
       <p>I am {props.name} and I am {props.age} years old!</p>
-      <p>{props.children}. children refers to any elements in between tag. This could be HTML, other React Components, text, etc.</p>
+      <p onClick={props.clickHandler}>{props.children}. children refers to any elements in between tag. This could be HTML, other React Components, text, etc.</p>
     </div>
   );
 };
