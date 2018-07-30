@@ -6,6 +6,8 @@ const person = (props) => {
     <div>
       <p>I am {props.name} and I am {props.age} years old!</p>
       <p onClick={props.clickHandler}>{props.children}. children refers to any elements in between tag. This could be HTML, other React Components, text, etc.</p>
+      <input type="text" onChange={props.inputChangeMethod} value={props.name} />
+      {/* The above being a special two-way binding feature. */}
     </div>
   );
 };

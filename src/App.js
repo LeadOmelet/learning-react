@@ -29,6 +29,17 @@ class App extends Component {
     });
   }
 
+/* Text input */
+  nameChangeHandler = (event) => {
+    this.setState({persons:
+        [
+          { name: event.target.value, age: 40 },
+          { name: "B", age: 24 },
+          { name: "J", age: 39 }
+        ]
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -36,7 +47,7 @@ class App extends Component {
         <p>This is really working.</p>
         <button onClick={this.switchNameHandler.bind(this, 'McDonalds')}>Switch Names</button>
         <Person
-          name={this.state.persons[0].name} age={this.state.persons[0].age} />
+          name={this.state.persons[0].name} age={this.state.persons[0].age} inputChangeMethod={this.nameChangeHandler.bind(this)} />
         <Person
           name={this.state.persons[1].name} age={this.state.persons[1].age} clickHandler={this.switchNameHandler.bind(this, 'McMac')}>Hobbies include: Racing.</Person>
         <Person
