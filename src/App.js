@@ -14,7 +14,8 @@ class App extends Component {
     persons: [
       { name: "Max", age: 39 },
       { name: "Bonnie", age: 23 },
-      { name: "Jack", age: 39 }]
+      { name: "Jack", age: 39 }],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -40,6 +41,11 @@ class App extends Component {
     });
   }
 
+  togglePersonsHandler = () => {
+    const toggleShow = this.state.showPersons;
+    this.setState({showPersons: !toggleShow});
+  }
+
   render() {
     /* Inline Styling */
     const butStyle = {
@@ -54,15 +60,19 @@ class App extends Component {
       <div className="App">
         <h1>Hey!</h1>
         <p>This is really working.</p>
-        <button style={butStyle} onClick={this.switchNameHandler.bind(this, 'McDonalds')}>Switch Names</button>
-        <Person
-          name={this.state.persons[0].name} age={this.state.persons[0].age} inputChangeMethod={this.nameChangeHandler.bind(this)} />
-        <Person
-          name={this.state.persons[1].name} age={this.state.persons[1].age} clickHandler={this.switchNameHandler.bind(this, 'McMac')}>Hobbies include: Racing.</Person>
-        <Person
-          name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        <button style={butStyle} onClick={this.togglePersonsHandler}>Switch Names</button>
+        { this.state.showPersons ?
+        <div>
+          <Person
+            name={this.state.persons[0].name} age={this.state.persons[0].age} inputChangeMethod={this.nameChangeHandler.bind(this)} />
+          <Person
+            name={this.state.persons[1].name} age={this.state.persons[1].age} clickHandler={this.switchNameHandler.bind(this, 'McMac')}>Hobbies include: Racing.</Person>
+          <Person
+            name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        </div> : null
+      }
       </div>
-    ); // ^^^ Looks like html, but is actually JSX.
+    ); // ^^^ Looks like html, but is actually JSX. If statements don't work but ternaries ( condition ? ifTrueDoThis : ifFalseDoThis ) do.
   }
 }
 
