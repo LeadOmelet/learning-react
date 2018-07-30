@@ -12,6 +12,8 @@ class App extends Component {
         <h1>Hey!</h1>
         <p>This is really working.</p>
         <Person />
+        <Person />
+        <Person />
       </div>
     ); // ^^^ Looks like html, but is actually JSX.
   }
