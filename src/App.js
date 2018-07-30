@@ -41,11 +41,20 @@ class App extends Component {
   }
 
   render() {
+    /* Inline Styling */
+    const butStyle = {
+      backgroundColor: 'blue',
+      font: 'inherit',
+      border: '2px solid cyan',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hey!</h1>
         <p>This is really working.</p>
-        <button onClick={this.switchNameHandler.bind(this, 'McDonalds')}>Switch Names</button>
+        <button style={butStyle} onClick={this.switchNameHandler.bind(this, 'McDonalds')}>Switch Names</button>
         <Person
           name={this.state.persons[0].name} age={this.state.persons[0].age} inputChangeMethod={this.nameChangeHandler.bind(this)} />
         <Person
