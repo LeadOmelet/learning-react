@@ -12,9 +12,9 @@ class App extends Component {
   */
   state = {
     persons: [
-      { name: "Max", age: 39 },
-      { name: "Bonnie", age: 23 },
-      { name: "Jack", age: 39 }],
+      { id: '12sf2', name: "Max", age: 39 },
+      { id: 'm2k4c', name: "Bonnie", age: 23 },
+      { id: 'k3odi4', name: "Jack", age: 39 }],
     showPersons: false
   }
 
@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    const persons = [ ...this.state.persons ]; //spreads or slice method copies object from old array. Before we had merely a reference that could cause bugs in the future.
     persons.splice(personIndex, 1); //Removes one element from array starting at personIndex
     this.setState({persons: persons});
   }
@@ -71,12 +71,13 @@ class App extends Component {
             return <Person
               clickHandler={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} />
+              age={person.age}
+              key={person.id} />
           }) }
         </div>
       );
     }
-
+    /* Keys help maintain lists thus making DOM only update needed places rather than whole list. Index is not a good idea to use as a key as it will change upon list change. Instead usually references to unique resource ids are preferred. */
     return (
       <div className="App">
         <h1>Hey!</h1>
