@@ -31,14 +31,21 @@ class App extends Component {
   }
 
 /* Text input */
-  nameChangeHandler = (event) => {
-    this.setState({persons:
-        [
-          { name: event.target.value, age: 40 },
-          { name: "B", age: 24 },
-          { name: "J", age: 39 }
-        ]
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id; //Is person I am looking for?
     });
+
+    const person = {
+      ...this.state.persons[personIndex] //... is spread operator. Copies instead of merely creating reference of the array.
+    };
+
+    person.name = event.target.value;
+
+    const people = [...this.state.persons];
+    people[personIndex] = person;
+
+    this.setState({ persons: people });
   }
 
   togglePersonsHandler = () => {
@@ -64,6 +71,7 @@ class App extends Component {
 
     /* Another way to toggle persons. */
     let persons = null;
+    //The below maps the state persons array to JSX elements if showPersons is true.
     if(this.state.showPersons) {
       persons = (
         <div>
@@ -72,7 +80,8 @@ class App extends Component {
               clickHandler={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              key={person.id} />
+              key={person.id}
+              inputChangeMethod={(event) => this.nameChangeHandler(event, person.id)} />
           }) }
         </div>
       );
