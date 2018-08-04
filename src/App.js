@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
+//Radium helps with MediaQueries, PseudoSelectors, etc.
 /*
 Components should start with a upper case character to prevent JSX from mis interpretting it as a DOM element.
 */
@@ -67,8 +69,15 @@ class App extends Component {
       font: 'inherit',
       border: '2px solid cyan',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightblue',
+        color: 'black'
+      }
     };
+    /*
+    Radium allows us to use PseudoSelectors (such as :hover).
+    */
 
     /* Another way to toggle persons. */
     let persons = null;
@@ -87,17 +96,31 @@ class App extends Component {
         </div>
       );
       butStyle.backgroundColor = 'red';
+      butStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
     }
     /* Keys help maintain lists thus making DOM only update needed places rather than whole list. Index is not a good idea to use as a key as it will change upon list change. Instead usually references to unique resource ids are preferred. */
+    let cssClasses = [];
+    if(this.state.persons.length <= 2){
+      cssClasses.push('red');
+    }
+
+    if(this.state.persons.length <= 1){
+      cssClasses.push('bold');
+    }
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hey!</h1>
-        <p>This is really working.</p>
+        <p className={cssClasses.join(' ')}>This is really working.</p>
         <button style={butStyle} onClick={this.togglePersonsHandler}>Switch Names</button>
         {persons}
       </div>
+      </StyleRoot>
     ); // ^^^ Looks like html, but is actually JSX. If statements don't work but ternaries ( condition ? ifTrueDoThis : ifFalseDoThis ) do.
-  }
+  } // StyleRoot element is needed for Radium to use MediaQueries and CSS Keyframes.
 }
 
 /*
@@ -120,4 +143,4 @@ ___________________
 className is used instead of class because JavaScript ES6 utilizes the keyword class.
 */
 
-export default App;
+export default Radium(App);
