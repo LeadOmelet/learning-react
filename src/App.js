@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 /*
 Components should start with a upper case character to prevent JSX from mis interpretting it as a DOM element.
+React Ejecting: Allows the ability to edit React-Scripts configuration file.
 */
 
 class App extends Component {
