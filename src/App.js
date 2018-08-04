@@ -63,6 +63,7 @@ class App extends Component {
     /* Inline Styling */
     const butStyle = {
       backgroundColor: 'blue',
+      color: 'white',
       font: 'inherit',
       border: '2px solid cyan',
       padding: '8px',
@@ -85,6 +86,7 @@ class App extends Component {
           }) }
         </div>
       );
+      butStyle.backgroundColor = 'red';
     }
     /* Keys help maintain lists thus making DOM only update needed places rather than whole list. Index is not a good idea to use as a key as it will change upon list change. Instead usually references to unique resource ids are preferred. */
     return (
