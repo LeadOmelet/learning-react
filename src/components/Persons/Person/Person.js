@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styleClass from './Person.css';
 
 const person = (props) => {
