@@ -5,6 +5,36 @@ import Persons from '../components/Persons/Persons';
 //import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
+  /*
+  Creation of Components - Life Cycle
+  Constructor -> ComponentWillMount -> Render (Child Components) -> componentDidMount
+
+  Component Removal - LifeCycle
+  ComponentWillUnmount
+
+  Update (Triggered by Parent)
+  componentWillReceiveProps(nextProps) - DO: Sync State to Props
+  -> shouldComponentUpdate(nextProps, nextState) - May cancel updating process. Return true or false to continue updating component.
+  -> componentWillUpdate(nextProps, nextState) - DO: Sync State to Props
+  -> render() [Child Component introduction.]
+  -> componentDidUpdate() - DO: Cause side-effects
+  */
+  constructor(props){
+    super(props);
+    console.log('[App.js] Inside Constructor', props);
+    //Can init state here.
+  }
+
+  componentWillMount()
+  {
+    console.log('[App.js] Inside ComponentWillMount');
+  }
+
+  componentDidMount()
+  {
+    console.log('[App.js] Inside Component Did Mount.');
+  }
+
   state = {
     persons: [
       { id: '12sf2', name: "Max", age: 39 },
@@ -42,6 +72,8 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] Inside Render function.');
+
     let persons = null;
     if(this.state.showPersons) {
       persons = (
