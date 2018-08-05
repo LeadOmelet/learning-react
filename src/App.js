@@ -11,16 +11,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    this.setState({persons:
-        [
-          { name: newName, age: 40 },
-          { name: "B", age: 24 },
-          { name: "J", age: 39 }
-        ]
-    });
-  }
-
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
