@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import styleClasses from './App.css';
 import Person from './Person/Person';
-/*
-Components should start with a upper case character to prevent JSX from mis interpretting it as a DOM element.
-React Ejecting: Allows the ability to edit React-Scripts configuration file.
-*/
 
 class App extends Component {
-  /*
-  States are not availble in function components (only in classes that extend the Component class).
-  States are global. Be careful!
-  */
   state = {
     persons: [
       { id: '12sf2', name: "Max", age: 39 },
@@ -20,8 +12,6 @@ class App extends Component {
   }
 
   switchNameHandler = (newName) => {
-    console.log('Was clicked!');
-    // DO NOT DO THIS: this.state.persons[0].name = "Maxxy Boy";
     this.setState({persons:
         [
           { name: newName, age: 40 },
@@ -31,10 +21,9 @@ class App extends Component {
     });
   }
 
-/* Text input */
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
-      return p.id === id; //Is person I am looking for?
+      return p.id === id;
     });
 
     const person = {
@@ -61,11 +50,9 @@ class App extends Component {
   }
 
   render() {
-    /* Another way to toggle persons. */
     let persons = null;
     let btnClass = '';
 
-    //The below maps the state persons array to JSX elements if showPersons is true.
     if(this.state.showPersons) {
       persons = (
         <div>
@@ -82,7 +69,7 @@ class App extends Component {
 
       btnClass = styleClasses.Red;
     }
-    /* Keys help maintain lists thus making DOM only update needed places rather than whole list. Index is not a good idea to use as a key as it will change upon list change. Instead usually references to unique resource ids are preferred. */
+
     let cssClasses = [];
     if(this.state.persons.length <= 2){
       cssClasses.push(styleClasses.red);
@@ -98,28 +85,8 @@ class App extends Component {
         <button className={btnClass} onClick={this.togglePersonsHandler}>Switch Names</button>
         {persons}
       </div>
-    ); // ^^^ Looks like html, but is actually JSX. If statements don't work but ternaries ( condition ? ifTrueDoThis : ifFalseDoThis ) do.
+    );
   }
 }
-
-/*
-() => this.switchNameHandler()
-...is the equivalent of... (though can result in a performance hit)
-this.switchNameHandler.bind(this, 'McDonalds')
-*/
-
-/*
-Notes on JSX:
-<div className="App">
-  <h1>Hey!</h1>
-</div>
-
-is converted to...
-
-React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Hey!'));
-^ Becomes a mess when there are lots of elements that is what we use the above HTML look-a-like.
-___________________
-className is used instead of class because JavaScript ES6 utilizes the keyword class.
-*/
 
 export default App;
