@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-/* Converted stateless component into a stateful one. */
-class Persons extends Component {
+/* Converted 'Componenet' use to 'PureComponent' usage. Difference being that 'PureComponent' already takes care of 'shouldComponentUpdate' checking automatically via props and states comparisons. */
+class Persons extends PureComponent {
   constructor(props){
     super(props);
     console.log('[Persons.js] Inside constructor.');
@@ -12,6 +12,7 @@ class Persons extends Component {
     console.log('[UPDATE Persons.js] Inside componentWillReceiveProps', nextProps);
   }
 
+/*
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
     //return true;
@@ -19,6 +20,7 @@ class Persons extends Component {
     nextProps.nameChange !== this.props.nameChange ||
     nextProps.deletePerson !== this.props.deletePerson; //false;
   }
+*/
 
   componentWillUpdate(nextProps, nextState) {
     console.log('[UPDATE Persons.js] Inside componentWillUpdate', nextProps, nextState);
