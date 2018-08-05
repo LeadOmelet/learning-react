@@ -3,13 +3,21 @@ import Person from './Person/Person';
 
 /* Converted stateless component into a stateful one. */
 class Persons extends Component {
+  constructor(props){
+    super(props);
+    console.log('[Persons.js] Inside constructor.');
+  }
+
   componentWillReceiveProps(nextProps) {
     console.log('[UPDATE Persons.js] Inside componentWillReceiveProps', nextProps);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
-    return nextProps.persons !== this.props.persons; //false;
+    //return true;
+    return nextProps.people !== this.props.people ||
+    nextProps.nameChange !== this.props.nameChange ||
+    nextProps.deletePerson !== this.props.deletePerson; //false;
   }
 
   componentWillUpdate(nextProps, nextState) {

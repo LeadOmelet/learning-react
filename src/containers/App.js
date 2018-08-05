@@ -18,6 +18,12 @@ class App extends Component {
   -> componentWillUpdate(nextProps, nextState) - DO: Sync State to Props
   -> render() [Child Component introduction.]
   -> componentDidUpdate() - DO: Cause side-effects
+
+  Update (Triggered by Internal Change)
+  shouldComponentUpdate
+  -> componentWillUpdate()
+  -> Render()
+  -> componentDidUpdate()
   */
   constructor(props){
     super(props);
