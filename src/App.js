@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styleClasses from './App.css';
 import Person from './Person/Person';
 /*
 Components should start with a upper case character to prevent JSX from mis interpretting it as a DOM element.
@@ -61,18 +61,10 @@ class App extends Component {
   }
 
   render() {
-    /* Inline Styling */
-    const butStyle = {
-      backgroundColor: 'blue',
-      color: 'white',
-      font: 'inherit',
-      border: '2px solid cyan',
-      padding: '8px',
-      cursor: 'pointer',
-    };
-
     /* Another way to toggle persons. */
     let persons = null;
+    let btnClass = '';
+
     //The below maps the state persons array to JSX elements if showPersons is true.
     if(this.state.showPersons) {
       persons = (
@@ -87,22 +79,23 @@ class App extends Component {
           }) }
         </div>
       );
-      butStyle.backgroundColor = 'red';
+
+      btnClass = styleClasses.Red;
     }
     /* Keys help maintain lists thus making DOM only update needed places rather than whole list. Index is not a good idea to use as a key as it will change upon list change. Instead usually references to unique resource ids are preferred. */
     let cssClasses = [];
     if(this.state.persons.length <= 2){
-      cssClasses.push('red');
+      cssClasses.push(styleClasses.red);
     }
 
     if(this.state.persons.length <= 1){
-      cssClasses.push('bold');
+      cssClasses.push(styleClasses.bold);
     }
     return (
-      <div className="App">
+      <div className={styleClasses.App}>
         <h1>Hey!</h1>
         <p className={cssClasses.join(' ')}>This is really working.</p>
-        <button style={butStyle} onClick={this.togglePersonsHandler}>Switch Names</button>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>Switch Names</button>
         {persons}
       </div>
     ); // ^^^ Looks like html, but is actually JSX. If statements don't work but ternaries ( condition ? ifTrueDoThis : ifFalseDoThis ) do.
