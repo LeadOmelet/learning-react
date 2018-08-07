@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styleClasses from './App.css';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
+import WithClass from '../hoc/WithClass';
 //import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
@@ -69,6 +70,15 @@ class App extends Component {
   togglePersonsHandler = () => {
     const toggleShow = this.state.showPersons;
     this.setState({showPersons: !toggleShow});
+    /*
+    When set state based on previous state it is best to use the following syntax and structure to maintain reliability
+    this.setState( (prevState, props) => {
+      return {
+        showPersons: !toggleShow,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    });
+    */
   }
 
   deletePersonHandler = (personIndex) => {
@@ -92,13 +102,13 @@ class App extends Component {
 
 
     return (
-      <div className={styleClasses.App}>
+      <WithClass classes={styleClasses.App}>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           togglePersons={this.togglePersonsHandler} />
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
